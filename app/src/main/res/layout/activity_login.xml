@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginIntro.LoginActivity">
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_intro03"
+        android:scaleType="fitXY"
+        android:layout_marginTop="105dp"/>
+    <ImageView
+        android:id="@+id/signBt"
+        android:layout_width="220dp"
+        android:layout_height="38dp"
+        android:src="@drawable/member_login"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="93dp"/>
+    <ImageView
+        android:id="@+id/kakaoBt"
+        android:layout_above="@+id/signBt"
+        android:layout_width="220dp"
+        android:layout_height="38dp"
+        android:src="@drawable/kakao_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"/>
+    <ImageView
+        android:id="@+id/loginBt"
+        android:layout_above="@+id/kakaoBt"
+        android:layout_width="220dp"
+        android:layout_height="38dp"
+        android:src="@drawable/facebook_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"/>
+
+</RelativeLayout>
