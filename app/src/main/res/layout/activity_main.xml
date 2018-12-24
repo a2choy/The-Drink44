@@ -206,9 +206,9 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/home"
-            android:background="@drawable/text_border_1dp" />
+            android:background="#333333" />
 
         <TextView
             android:id="@+id/myTv"
@@ -222,9 +222,9 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/myTv"
-            android:background="@drawable/text_border_1dp" />
+            android:background="#333333" />
 
         <TextView
             android:id="@+id/noticeTv"
@@ -238,9 +238,9 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/noticeTv"
-            android:background="@drawable/text_border_1dp" />
+            android:background="#333333" />
 
         <TextView
             android:id="@+id/askTv"
@@ -254,9 +254,9 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/askTv"
-            android:background="@drawable/text_border_1dp" />
+            android:background="#333333" />
 
 
         <TextView
@@ -271,9 +271,9 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/howTv"
-            android:background="@drawable/text_border_1dp" />
+            android:background="#333333" />
 
         <TextView
             android:id="@+id/settingTv"
@@ -287,9 +287,9 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/settingTv"
-            android:background="@drawable/text_border_1dp" />
+            android:background="#333333" />
 
 
     </RelativeLayout>

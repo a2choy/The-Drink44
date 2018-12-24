@@ -32,7 +32,13 @@
             android:name=".LoginIntro.SignUp1Activity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".DetailActivity" />
-        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".Drawer.MyActivity" />
+        <activity android:name=".Drawer.NoticeActivity" />
+        <activity android:name=".Drawer.AskActivity" />
+        <activity android:name=".Drawer.HowActivity" />
+        <activity android:name=".Drawer.SettingActivity" />
+        <activity android:name=".Drawer.Notice2Activity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer"
+    tools:context=".Drawer.MyActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/text_border">
+
+            <ImageView
+                android:id="@+id/drawerIv"
+                android:layout_width="50dp"
+                android:layout_height="56dp"
+                android:src="@drawable/top_icon01" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="마이 페이지"
+                android:textSize="23sp" />
+
+            <ImageView
+                android:id="@+id/favIv"
+                android:layout_width="50dp"
+                android:layout_height="56dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/my_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ll"
+            android:layout_margin="10dp" />
+        
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:layout_below="@+id/logo"
+            android:gravity="center"
+            android:text="이름: 홍 길 동"/>
+
+        <TextView
+            android:id="@+id/nickTv"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:layout_below="@+id/nameTv"
+            android:gravity="center"
+            android:text="닉네임: 길동 아범"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/home"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:text="Home"
+            android:layout_marginLeft="25dp"
+            android:gravity="center|left"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/home"
+            android:background="#333333" />
+
+        <TextView
+            android:id="@+id/myTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/home"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="마이 페이지"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/myTv"
+            android:background="#333333" />
+
+        <TextView
+            android:id="@+id/noticeTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/myTv"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="공지사항"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/noticeTv"
+            android:background="#333333" />
+
+        <TextView
+            android:id="@+id/askTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/noticeTv"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="문의하기"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/askTv"
+            android:background="#333333" />
+
+
+        <TextView
+            android:id="@+id/howTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/askTv"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="사용 방법 안내"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/howTv"
+            android:background="#333333" />
+
+        <TextView
+            android:id="@+id/settingTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/howTv"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="설정"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/settingTv"
+            android:background="#333333" />
+
+
+    </RelativeLayout>
+
+</android.support.v4.widget.DrawerLayout>

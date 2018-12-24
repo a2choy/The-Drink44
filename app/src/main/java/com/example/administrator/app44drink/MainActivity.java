@@ -2,15 +2,15 @@ package com.example.administrator.app44drink;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -18,7 +18,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +44,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.administrator.app44drink.LoginIntro.FragmentIntro;
+import com.example.administrator.app44drink.Drawer.AskActivity;
+import com.example.administrator.app44drink.Drawer.HowActivity;
+import com.example.administrator.app44drink.Drawer.MyActivity;
+import com.example.administrator.app44drink.Drawer.NoticeActivity;
+import com.example.administrator.app44drink.Drawer.SettingActivity;
+import com.example.administrator.app44drink.LoginIntro.SignUp1Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +61,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    ImageView drawerIv, searchIv, favIv, mapIv;
+    ImageView searchIv, favIv, mapIv;
     LinearLayout layout;
     ListView mainLv;
     MyAdapter adapter;
@@ -66,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ImageView doTv1;
     ImageView doTv2;
     ImageView doTv3;
+
+    ImageView drawerIv;
+    TextView home, myTv, noticeTv, askTv, howTv, settingTv;
 
     String id;
     String search = "";
@@ -89,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        drawerIv = (ImageView)findViewById(R.id.drawerIv);
+
         searchIv = (ImageView)findViewById(R.id.searchIv);
         mapIv = (ImageView)findViewById(R.id.mapIv);
         favIv = (ImageView)findViewById(R.id.favIv);
@@ -99,6 +106,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         doTv2 = (ImageView)findViewById(R.id.dotTv2);
         doTv3 = (ImageView)findViewById(R.id.dotTv3);
         pager = (ViewPager)findViewById(R.id.pager);
+
+        drawerIv = (ImageView)findViewById(R.id.drawerIv);
+        home = (TextView)findViewById(R.id.home);
+        myTv = (TextView)findViewById(R.id.myTv);
+        noticeTv = (TextView)findViewById(R.id.noticeTv);
+        askTv = (TextView)findViewById(R.id.askTv);
+        howTv = (TextView)findViewById(R.id.howTv);
+        settingTv = (TextView)findViewById(R.id.settingTv);
 
         init();
         init2();
@@ -152,7 +167,88 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
+        favIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alt_bld = new AlertDialog.Builder(MainActivity.this);
+                alt_bld.setTitle("정렬 방식");
+                alt_bld.setMessage("정렬 방식");
+                alt_bld.setCancelable(false);
+                alt_bld.setPositiveButton("즐겨찾기",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                type = 2;
+                                currentPage = 0;
+                                arr.clear();
+                                sendResponse();
+                            }
+                        });
+                alt_bld.setNegativeButton("보통",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                type = 1;
+                                currentPage = 0;
+                                arr.clear();
+                                sendResponse();
+                            }
+                        });
+                AlertDialog alert = alt_bld.create();
+                alert.show();
+                return;
+            }
+        });
 
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
+
+        myTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MyActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        noticeTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        askTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AskActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        howTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HowActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        settingTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
