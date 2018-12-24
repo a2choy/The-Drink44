@@ -38,7 +38,8 @@
         <activity android:name=".Drawer.AskActivity" />
         <activity android:name=".Drawer.HowActivity" />
         <activity android:name=".Drawer.SettingActivity" />
-        <activity android:name=".Drawer.Notice2Activity"></activity>
+        <activity android:name=".Drawer.Notice2Activity" />
+        <activity android:name=".Drawer.How2Activity" />
     </application>
 
 </manifest>

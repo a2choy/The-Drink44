@@ -1,7 +1,6 @@
 package com.example.administrator.app44drink.Drawer;
 
 import android.content.SharedPreferences;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,13 +17,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.administrator.app44drink.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Notice2Activity extends AppCompatActivity {
+public class How2Activity extends AppCompatActivity {
 
     ImageView backIv;
     TextView titleTv, contentTv;
@@ -32,10 +32,11 @@ public class Notice2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notice2);
-        backIv = (ImageView) findViewById(R.id.backIv);
-        titleTv = (TextView) findViewById(R.id.titleTv);
-        contentTv = (TextView) findViewById(R.id.contentTv);
+        setContentView(R.layout.activity_how2);
+
+        backIv = (ImageView)findViewById(R.id.backIv);
+        titleTv = (TextView)findViewById(R.id.titleTv);
+        contentTv = (TextView)findViewById(R.id.contentTv);
 
         backIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +49,7 @@ public class Notice2Activity extends AppCompatActivity {
         final String num = getIntent().getStringExtra("num");
 
         RequestQueue stringRequest = Volley.newRequestQueue(this);
-        String str = getResources().getString(R.string.url) + "newsContent.php";
+        String str = getResources().getString(R.string.url) + "guideContent.php";
         StringRequest myReq = new StringRequest(
                 Request.Method.POST,
                 str,
@@ -66,7 +67,6 @@ public class Notice2Activity extends AppCompatActivity {
         stringRequest.add(myReq);
 
     }
-
     Response.Listener<String> noticeResponse = new Response.Listener<String>() {
 
         @Override
@@ -83,7 +83,7 @@ public class Notice2Activity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (bool.equals("true")) {
+            if(bool.equals("true")){
                 String title = "";
                 String content = "";
                 try {

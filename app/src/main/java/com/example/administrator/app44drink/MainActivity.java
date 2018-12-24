@@ -65,12 +65,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     LinearLayout layout;
     ListView mainLv;
     MyAdapter adapter;
-    DrawerLayout drawer;
+
     ViewPager pager;
     ImageView doTv1;
     ImageView doTv2;
     ImageView doTv3;
 
+    DrawerLayout drawer;
     ImageView drawerIv;
     TextView home, myTv, noticeTv, askTv, howTv, settingTv;
 
@@ -316,9 +317,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
                 arrEvent.clear();
                 for (int i = 0; i < event.length(); i++) {
-
                     try {
-
                         String temp = event.getJSONObject(i).getString("img");
                         int tempNum = Integer.parseInt(event.getJSONObject(i).getString("num"));
                         arrEvent.add(new Event(tempNum,temp));

@@ -1,9 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Drawer.HowActivity">
+    android:id="@+id/drawer"
+    tools:context=".Drawer.MyActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/text_border">
 
-</android.support.constraint.ConstraintLayout>
+            <ImageView
+                android:id="@+id/drawerIv"
+                android:layout_width="50dp"
+                android:layout_height="56dp"
+                android:src="@drawable/top_icon01" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="사용방법안내"
+                android:textSize="23sp" />
+
+            <ImageView
+                android:id="@+id/favIv"
+                android:layout_width="50dp"
+                android:layout_height="56dp" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/mainLv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"></ListView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/home"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:text="Home"
+            android:layout_marginLeft="25dp"
+            android:gravity="center|left"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/home"
+            android:background="#333333" />
+
+        <TextView
+            android:id="@+id/myTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/home"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="마이 페이지"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/myTv"
+            android:background="#333333" />
+
+        <TextView
+            android:id="@+id/noticeTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/myTv"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="공지사항"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/noticeTv"
+            android:background="#333333" />
+
+        <TextView
+            android:id="@+id/askTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/noticeTv"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="문의하기"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/askTv"
+            android:background="#333333" />
+
+
+        <TextView
+            android:id="@+id/howTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/askTv"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="사용 방법 안내"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/howTv"
+            android:background="#333333" />
+
+        <TextView
+            android:id="@+id/settingTv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/howTv"
+            android:gravity="center|left"
+            android:layout_marginLeft="25dp"
+            android:text="설정"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/settingTv"
+            android:background="#333333" />
+
+
+    </RelativeLayout>
+
+</android.support.v4.widget.DrawerLayout>
