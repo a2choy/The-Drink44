@@ -50,6 +50,12 @@ import com.example.administrator.app44drink.Drawer.MyActivity;
 import com.example.administrator.app44drink.Drawer.NoticeActivity;
 import com.example.administrator.app44drink.Drawer.SettingActivity;
 import com.example.administrator.app44drink.LoginIntro.SignUp1Activity;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ImageView doTv2;
     ImageView doTv3;
 
+    MapFragment map;
+
     DrawerLayout drawer;
     ImageView drawerIv;
     TextView home, myTv, noticeTv, askTv, howTv, settingTv;
@@ -79,10 +87,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String search = "";
     double lat, lon;
     int type = 1;
-
+    android.app.FragmentManager fm;
     PagerAdapter pagerAdapter;
     boolean adapterCreated = false;
-    boolean mapMode = false;
+    boolean mapBool = false;
     boolean nextPageAvailable = false;
     int currentPage = 0;
     boolean lastItemVisibleFlag = false;
@@ -117,6 +125,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         howTv = (TextView)findViewById(R.id.howTv);
         settingTv = (TextView)findViewById(R.id.settingTv);
 
+        fm = getFragmentManager();
+        map = (MapFragment)fm.findFragmentById(R.id.map);
+
+        map.getView().setVisibility(View.GONE);
+
         init();
         init2();
 
@@ -129,7 +142,40 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
+        mapIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mapBool = !mapBool;
+                if(mapBool) {
+                    map.getView().setVisibility(View.VISIBLE);
+                    map.getMapAsync(new OnMapReadyCallback() {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
 
+                            for (int i = 0; i < arr.size(); i++) {
+                                double lat = arr.get(i).la;
+                                double lng = arr.get(i).lo;
+                                LatLng loc = new LatLng(lat, lng);
+
+                                MarkerOptions option = new MarkerOptions();
+                                option.position(loc);
+                                option.title(arr.get(i).title);
+
+                                option.draggable(true);
+                                googleMap.addMarker(option);
+
+
+                            }
+                            LatLng loc = new LatLng(lat, lon);
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+                        }
+                    });
+                } else {
+                    map.getView().setVisibility(View.GONE);
+                }
+            }
+        });
 
         adapter = new MyAdapter(this);
         mainLv.setAdapter(adapter);
@@ -366,6 +412,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     private void init2() {
+        Log.d("heu", "hello");
         GPSListener listener = new GPSListener();
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -379,12 +426,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             //            //권한 없어서 못쓴다
             return;
         }
-        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 7000, 5, listener);
+        manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 7000, 5, listener);
         Location location = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         if(location != null){
             //Log.d("heu", "222lat: " + location.getLatitude() + ",  lon: "+ location.getLongitude());
             lat = location.getLatitude();
             lon = location.getLongitude();
+            Log.d("heu", "lat: " + lat + " lon: " + lon);
         }
     }
 
@@ -523,6 +571,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         public void onLocationChanged(Location location) {
             lat = location.getLatitude();
             lon = location.getLongitude();
+            Log.d("heu", "1234; " + lat + " " + lon);
         }
 
         @Override
@@ -553,7 +602,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             }
         }
-        if (pos == -1) {
+        if (pos != -1) {
             if (ActivityCompat.shouldShowRequestPermissionRationale
                     (this, per[pos])) {
                 //이전에 해당 권한을 거절한 이력이 있음

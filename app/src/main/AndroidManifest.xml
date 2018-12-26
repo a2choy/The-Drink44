@@ -13,6 +13,9 @@
         android:roundIcon="@drawable/my_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAllbpdxQDPLlU8MzfRcXZBxeM1eBe7UgE" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginIntro.IntroActivity">
             <intent-filter>

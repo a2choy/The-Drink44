@@ -23,6 +23,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +53,10 @@ public class DetailActivity extends AppCompatActivity {
     boolean adapterCreated = false;
     boolean favBool = false;
 
+    MapFragment map;
+    android.app.FragmentManager fm;
+    boolean mapBool = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +75,46 @@ public class DetailActivity extends AppCompatActivity {
         distanceTv = (TextView) findViewById(R.id.distanceTv);
         pager = (ViewPager) findViewById(R.id.pager);
 
+        fm = getFragmentManager();
+        map = (MapFragment) fm.findFragmentById(R.id.map);
+
+        map.getView().setVisibility(View.GONE);
+
         sendResponse();
+
+        locIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(coffee != null) {
+                    mapBool = !mapBool;
+                    if (mapBool) {
+                        map.getView().setVisibility(View.VISIBLE);
+                        map.getMapAsync(new OnMapReadyCallback() {
+                            @Override
+                            public void onMapReady(GoogleMap googleMap) {
+
+                                double lat = coffee.la;
+                                double lng = coffee.lo;
+                                LatLng loc = new LatLng(lat, lng);
+
+                                MarkerOptions option = new MarkerOptions();
+                                option.position(loc);
+                                option.title(coffee.title);
+
+                                option.draggable(true);
+                                googleMap.addMarker(option);
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+                                googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+                            }
+                        });
+                    } else {
+                        map.getView().setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
+
 
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -121,8 +170,8 @@ public class DetailActivity extends AppCompatActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> params = new HashMap<String, String>();
                             params.put("id", id);
-                            params.put("num", coffee.num+ "");
-                            if(favBool) {
+                            params.put("num", coffee.num + "");
+                            if (favBool) {
                                 params.put("type", "1");
                             } else {
                                 params.put("type", "0");

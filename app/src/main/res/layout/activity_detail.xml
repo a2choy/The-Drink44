@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
+
+
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
@@ -55,6 +57,7 @@
                 android:gravity="left"
                 android:text="Cafe Inkling"
                 android:textSize="18sp" />
+
             <TextView
                 android:id="@+id/distanceTv"
                 android:layout_width="wrap_content"
@@ -63,23 +66,27 @@
                 android:layout_weight="1"
                 android:gravity="left"
                 android:text="12km"
-                android:textSize="12sp"
-                android:textColor="#9d9a9a"/>
+                android:textColor="#9d9a9a"
+                android:textSize="12sp" />
 
         </LinearLayout>
+
         <ImageView
             android:id="@+id/favIv"
             android:layout_width="50dp"
             android:layout_height="62dp"
-            android:src="@drawable/top_bookmark_off"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:src="@drawable/top_bookmark_off" />
+
         <ImageView
             android:id="@+id/locIv"
             android:layout_width="50dp"
             android:layout_height="62dp"
-            android:src="@drawable/top_map"
-            android:layout_toLeftOf="@+id/favIv"/>
+            android:layout_toLeftOf="@+id/favIv"
+            android:src="@drawable/top_map" />
     </RelativeLayout>
+
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
@@ -88,13 +95,13 @@
         android:layout_below="@+id/ll2" />
 
     <LinearLayout
-        android:layout_below="@+id/ll2"
         android:layout_width="wrap_content"
         android:layout_height="210dp"
+        android:layout_below="@+id/ll2"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/dotTv1"
@@ -107,43 +114,49 @@
             android:id="@+id/dotTv2"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginLeft="10dp"
             android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/circle_off" />
 
         <ImageView
             android:id="@+id/dotTv3"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginLeft="10dp"
             android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/circle_off" />
 
         <ImageView
             android:id="@+id/dotTv4"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginLeft="10dp"
             android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/circle_off" />
 
         <ImageView
             android:id="@+id/dotTv5"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginLeft="10dp"
             android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/circle_off" />
 
     </LinearLayout>
-    
+
     <TextView
         android:id="@+id/descriptionTv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:layout_below="@+id/pager"/>
+        android:layout_below="@+id/pager"
+        android:layout_margin="16dp" />
 
+    <fragment
+        android:layout_below="@id/ll2"
+        android:id="@+id/map"
+        class="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </RelativeLayout>
