@@ -25,6 +25,7 @@ public class MenuActivity extends AppCompatActivity {
     ArrayList<MenuInfo> arr2 = new ArrayList<>();
     MyAdapter1 adapter1;
     MyAdapter2 adapter2;
+
     boolean flag = true;
 
     @Override
@@ -36,6 +37,13 @@ public class MenuActivity extends AppCompatActivity {
 
         ArrayList<MenuInfo> temp = (ArrayList<MenuInfo>)getIntent().getSerializableExtra("menu");
 
+        findViewById(R.id.backIv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         for(int i = 0; i < temp.size(); i++){
             if(flag){
                 arr1.add(temp.get(i));
@@ -43,6 +51,9 @@ public class MenuActivity extends AppCompatActivity {
                 arr2.add(temp.get(i));
             }
             flag = !flag;
+        }
+        if(arr1.size() > arr2.size()){
+            arr2.add(new MenuInfo("",-1));
         }
         adapter1 = new MyAdapter1(this);
         adapter2 = new MyAdapter2(this);
@@ -93,9 +104,12 @@ public class MenuActivity extends AppCompatActivity {
                 viewHolder = (RowDataViewHolder) convertView.getTag();
             }
 
-           viewHolder.menuTv.setText(arr1.get(position).name);
-           viewHolder.priceTv.setText(arr1.get(position).price + "원");
-
+            viewHolder.menuTv.setText(arr1.get(position).name);
+            if(arr1.get(position).price < 0){
+                viewHolder.priceTv.setText("");
+            } else {
+                viewHolder.priceTv.setText(arr1.get(position).price + "원");
+            }
 
             return convertView;
         }
@@ -140,7 +154,11 @@ public class MenuActivity extends AppCompatActivity {
             }
 
             viewHolder.menuTv.setText(arr2.get(position).name);
-            viewHolder.priceTv.setText(arr2.get(position).price + "원");
+            if(arr2.get(position).price < 0){
+                viewHolder.priceTv.setText("");
+            } else {
+                viewHolder.priceTv.setText(arr2.get(position).price + "원");
+            }
 
 
             return convertView;

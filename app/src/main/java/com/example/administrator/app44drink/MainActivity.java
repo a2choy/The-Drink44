@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     double lat, lon;
     int type = 1;
 
+    PagerAdapter pagerAdapter;
     boolean adapterCreated = false;
     boolean mapMode = false;
     boolean nextPageAvailable = false;
@@ -154,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         arr.clear();
         sendResponse();
 
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+        pager.setAdapter(pagerAdapter);
 
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -345,9 +348,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
             adapter.notifyDataSetChanged();
+            pagerAdapter.notifyDataSetChanged();
 
             if(!adapterCreated) {
-                pager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
                 setDot(pager.getCurrentItem());
                 adapterCreated = true;
             }
