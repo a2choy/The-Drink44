@@ -337,7 +337,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         AlertDialog.Builder alt_bld = new AlertDialog.Builder(SignUpActivity.this);
-        alt_bld.setTitle("아이디 확인");
+        alt_bld.setTitle("닉네임 확인");
         if (bool.equals("true")) {
 
             alt_bld.setMessage("사용이 가능 합니다.\n사용 하사겠습니까?");
