@@ -62,7 +62,8 @@
             android:layout_marginTop="13dp"
             android:layout_toRightOf="@id/name"
             android:background="@drawable/text_border"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:inputType="text"/>
 
         <TextView
             android:id="@+id/nick"
@@ -84,7 +85,8 @@
             android:layout_marginTop="13dp"
             android:layout_toRightOf="@id/nick"
             android:background="@drawable/text_border"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:inputType="text"/>
 
         <Button
             android:id="@+id/check2Bt"
@@ -119,7 +121,8 @@
             android:layout_marginTop="13dp"
             android:layout_toRightOf="@id/email"
             android:background="@drawable/text_border"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:inputType="text"/>
 
         <TextView
             android:id="@+id/phone"
@@ -142,7 +145,8 @@
             android:layout_toRightOf="@id/phone"
             android:background="@drawable/text_border"
             android:inputType="number"
-            android:maxLines="1" />
+            android:maxLines="1"
+            />
 
         <Button
             android:id="@+id/policyBt"
@@ -199,6 +203,7 @@
             android:textColor="#ffffff"
             android:textSize="16sp"
             android:textStyle="bold" />
+
 
     </RelativeLayout>
 </ScrollView>

@@ -39,7 +39,8 @@
             android:layout_marginTop="13dp"
             android:layout_toRightOf="@id/id"
             android:background="@drawable/text_border"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:inputType="text"/>
 
         <TextView
             android:id="@+id/pass1"
@@ -62,7 +63,8 @@
             android:layout_toRightOf="@id/id"
             android:background="@drawable/text_border"
             android:inputType="textPassword"
-            android:maxLines="1" />
+            android:maxLines="1"
+            />
 
         <TextView
             android:id="@+id/pass2"

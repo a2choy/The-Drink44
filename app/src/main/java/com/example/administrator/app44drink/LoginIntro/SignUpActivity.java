@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -41,24 +42,27 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     EditText nameEt, nickEt, emailEt, phoneEt;
     Button policyBt, tosBt, signUpBt, check2Bt;
     boolean check2 = false;
+    boolean visible = false;
     CheckBox policyCb;
     String type;
     String id;
     String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        backBt = (ImageView)findViewById(R.id.backIv);
-        nameEt = (EditText)findViewById(R.id.nameEt);
-        nickEt = (EditText)findViewById(R.id.nickEt);
-        emailEt = (EditText)findViewById(R.id.emailEt);
-        phoneEt = (EditText)findViewById(R.id.phoneEt);
-        check2Bt = (Button)findViewById(R.id.check2Bt);
-        policyBt = (Button)findViewById(R.id.policyBt);
-        tosBt = (Button)findViewById(R.id.tosBt);
-        signUpBt = (Button)findViewById(R.id.signUpBt);
-        policyCb = (CheckBox)findViewById(R.id.policyCb);
+        backBt = (ImageView) findViewById(R.id.backIv);
+        nameEt = (EditText) findViewById(R.id.nameEt);
+        nickEt = (EditText) findViewById(R.id.nickEt);
+        emailEt = (EditText) findViewById(R.id.emailEt);
+        phoneEt = (EditText) findViewById(R.id.phoneEt);
+        check2Bt = (Button) findViewById(R.id.check2Bt);
+        policyBt = (Button) findViewById(R.id.policyBt);
+        tosBt = (Button) findViewById(R.id.tosBt);
+        signUpBt = (Button) findViewById(R.id.signUpBt);
+        policyCb = (CheckBox) findViewById(R.id.policyCb);
+
 
         signUpBt.setOnClickListener(this);
 
@@ -85,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         Request.Method.POST,
                         str,
                         SignUpActivity.this,
-                        SignUpActivity.this){
+                        SignUpActivity.this) {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<String, String>();
@@ -98,8 +102,90 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 stringRequest.add(myReq);
             }
         });
+
+        policyBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RequestQueue stringRequest = Volley.newRequestQueue(SignUpActivity.this);
+                String str = getResources().getString(R.string.url) + "joinMemberClause.php";
+                StringRequest myReq = new StringRequest(
+                        Request.Method.POST,
+                        str,
+                        policyResponse,
+                        SignUpActivity.this) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("os", "aos");
+                        params.put("type", "1");
+                        return params;
+                    }
+                };
+                myReq.setRetryPolicy(new DefaultRetryPolicy(3000, 0, 1f));
+                stringRequest.add(myReq);
+
+            }
+        });
+        tosBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                RequestQueue stringRequest = Volley.newRequestQueue(SignUpActivity.this);
+                String str = getResources().getString(R.string.url) + "joinMemberClause.php";
+                StringRequest myReq = new StringRequest(
+                        Request.Method.POST,
+                        str,
+                        policyResponse,
+                        SignUpActivity.this) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("os", "aos");
+                        params.put("type", "2");
+                        return params;
+                    }
+                };
+                myReq.setRetryPolicy(new DefaultRetryPolicy(3000, 0, 1f));
+                stringRequest.add(myReq);
+            }
+        });
     }
 
+    Response.Listener<String> policyResponse = new Response.Listener<String>() {
+
+        @Override
+        public void onResponse(String s) {
+            JSONObject policy = null;
+            try {
+                policy = new JSONObject(s);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String bool = "";
+            try {
+                bool = policy.getString("result");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (bool.equals("true")) {
+                try {
+                    String policyString = policy.getString("content");
+                    AlertDialog.Builder alt_bld = new AlertDialog.Builder(SignUpActivity.this);
+                    alt_bld.setMessage(policyString);
+                    alt_bld.setCancelable(false);
+                    alt_bld.setPositiveButton("확인",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                }
+                            });
+                    AlertDialog alert = alt_bld.create();
+                    alert.show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
     TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void afterTextChanged(Editable edit) {
@@ -129,8 +215,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         final String phone = phoneEt.getText().toString().trim();
 
 
-
-        if(name.length() > 0 && nick.length() > 0 && email.length() > 0 && phone.length() > 0 && check2 && policyCb.isChecked()) {
+        if (name.length() > 0 && nick.length() > 0 && email.length() > 0 && phone.length() > 0 && check2 && policyCb.isChecked()) {
             RequestQueue stringRequest = Volley.newRequestQueue(this);
             String str = getResources().getString(R.string.url) + "joinMember.php";
             StringRequest myReq = new StringRequest(
@@ -192,7 +277,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             }
             AlertDialog.Builder alt_bld = new AlertDialog.Builder(SignUpActivity.this);
             alt_bld.setTitle("회원가입");
-            if(bool.equals("true")) {
+            if (bool.equals("true")) {
                 alt_bld.setMessage("가입 성공");
                 alt_bld.setCancelable(false);
                 final String finalUniqueId = uniqueId;
@@ -227,7 +312,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        Log.d("heu","error");
+        Log.d("heu", "error");
     }
 
     @Override
@@ -253,7 +338,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         AlertDialog.Builder alt_bld = new AlertDialog.Builder(SignUpActivity.this);
         alt_bld.setTitle("아이디 확인");
-        if(bool.equals("true")) {
+        if (bool.equals("true")) {
 
             alt_bld.setMessage("사용이 가능 합니다.\n사용 하사겠습니까?");
             alt_bld.setCancelable(false);

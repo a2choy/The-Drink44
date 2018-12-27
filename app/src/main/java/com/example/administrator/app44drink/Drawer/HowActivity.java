@@ -150,7 +150,7 @@ public class HowActivity extends AppCompatActivity implements AdapterView.OnItem
         final String id = prefs.getString("id", "1234");
 
         RequestQueue stringRequest = Volley.newRequestQueue(this);
-        String str = getResources().getString(R.string.url) + "guideList.php";
+        String str = getResources().getString(R.string.url) + "newsList.php";
         StringRequest myReq = new StringRequest(
                 Request.Method.POST,
                 str,

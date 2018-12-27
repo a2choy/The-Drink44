@@ -64,6 +64,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -112,10 +113,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         favIv = (ImageView)findViewById(R.id.favIv);
         layout = (LinearLayout)findViewById(R.id.layout);
         mainLv = (ListView)findViewById(R.id.mainLv);
-        doTv1 = (ImageView)findViewById(R.id.dotTv1);
-        doTv2 = (ImageView)findViewById(R.id.dotTv2);
-        doTv3 = (ImageView)findViewById(R.id.dotTv3);
-        pager = (ViewPager)findViewById(R.id.pager);
+
+        //pager = (ViewPager)findViewById(R.id.pager);
 
         drawerIv = (ImageView)findViewById(R.id.drawerIv);
         home = (TextView)findViewById(R.id.home);
@@ -201,6 +200,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         arr.clear();
         sendResponse();
 
+        View header = getLayoutInflater().inflate(R.layout.pager_item, null, false);
+        pager = (ViewPager)header.findViewById(R.id.pager);
+        doTv1 = (ImageView)header.findViewById(R.id.dotTv1);
+        doTv2 = (ImageView)header.findViewById(R.id.dotTv2);
+        doTv3 = (ImageView)header.findViewById(R.id.dotTv3);
+
         pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
 
@@ -216,6 +221,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onPageScrollStateChanged(int i) {
             }
         });
+
+        mainLv.addHeaderView(header);
 
         favIv.setOnClickListener(new View.OnClickListener() {
             @Override

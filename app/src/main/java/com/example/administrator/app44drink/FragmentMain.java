@@ -33,6 +33,7 @@ public class FragmentMain extends Fragment {
                 .setDefaultRequestOptions(requestOptions)
                 .load(img)
                 .into(mainIv);
+
         return view;
     }
     public void setImg(String img){

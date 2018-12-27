@@ -28,12 +28,12 @@
         <activity android:name=".LoginIntro.LoginActivity" />
         <activity
             android:name=".LoginIntro.SignUpActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize|adjustPan|stateAlwaysHidden" />
         <activity android:name=".LoginIntro.KakaoLoginActivity" />
         <activity android:name=".LoginIntro.NormalLoginActivity" />
         <activity
             android:name=".LoginIntro.SignUp1Activity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize|adjustPan|stateAlwaysHidden" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".Drawer.MyActivity" />
