@@ -419,7 +419,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     private void init2() {
-        Log.d("heu", "hello");
         GPSListener listener = new GPSListener();
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -439,7 +438,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             //Log.d("heu", "222lat: " + location.getLatitude() + ",  lon: "+ location.getLongitude());
             lat = location.getLatitude();
             lon = location.getLongitude();
-            Log.d("heu", "lat: " + lat + " lon: " + lon);
         }
     }
 
@@ -578,7 +576,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         public void onLocationChanged(Location location) {
             lat = location.getLatitude();
             lon = location.getLongitude();
-            Log.d("heu", "1234; " + lat + " " + lon);
         }
 
         @Override
@@ -603,7 +600,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             int permissionChk = ContextCompat.checkSelfPermission(this, per[i]);
             if (permissionChk == PackageManager.PERMISSION_GRANTED) {
                 //권한 있으므로 그냥 실행
-                Log.d("heu", "이미 권한을 부여했음");
+               // Log.d("heu", "이미 권한을 부여했음");
             } else {
                 pos = i;
                 break;
@@ -629,11 +626,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             for (int i = 0; i < permissions.length; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     //승락
-                    Log.d("heu", "승락");
+                    //Log.d("heu", "승락");
                     init();
                 } else {
                     //거절
-                    Log.d("heu", "거절");
+                    //Log.d("heu", "거절");
                 }
             }
         }
