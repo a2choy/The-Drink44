@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -126,6 +129,9 @@ public class SignUp1Activity extends AppCompatActivity implements Response.Liste
                     return;
                 }
 
+                String shaPass = testSHA256(pass1);
+                Log.d("heu", shaPass);
+
                 Intent intent = new Intent(SignUp1Activity.this, com.example.administrator.app44drink.LoginIntro.SignUpActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("type", 1);
@@ -135,6 +141,26 @@ public class SignUp1Activity extends AppCompatActivity implements Response.Liste
 
 
     }
+
+    public String testSHA256(String str){
+        String SHA = "";
+        try{
+            MessageDigest sh = MessageDigest.getInstance("SHA-256");
+            sh.update(str.getBytes());
+            byte byteData[] = sh.digest();
+            StringBuffer sb = new StringBuffer();
+            for(int i = 0 ; i < byteData.length ; i++){
+                sb.append(Integer.toString((byteData[i]&0xff) + 0x100, 16).substring(1));
+            }
+            SHA = sb.toString();
+
+        }catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
+            SHA = null;
+        }
+        return SHA;
+    }
+
 
     TextWatcher textWatcher = new TextWatcher() {
         @Override
